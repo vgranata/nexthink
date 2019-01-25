@@ -1,0 +1,59 @@
+<!-- Table global: type/diet/number of animals/cry -->
+<table class="table table-striped">
+    <thead>
+      <tr>
+      	<th></th>
+        <th>Animal type</th>
+        <th>Diet</th>
+        <th>Cry</th>
+        <th>Feature</th>
+        <th>N. of animals in the pet shop</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-left" ng-repeat="animal in global_list track by $index">
+      	<td>
+	      	<p class="radio">
+  			<label><input value="" ng-click="passType($index)" type="radio" name="type"></label>
+  			</p>
+      	</td>
+        <td class="cry"><span data-toggle="tooltip" data-placement="rigth" title="{{animal.cry}}">{{animal.type}}</span></td>
+        <td>{{animal.diet}}</td>
+        <td>{{animal.cry}}</td>
+        <td>{{animal.feature}}</td>
+        <td>{{get_nanimals(animal.type)}}</td>
+        <td class="text-right">
+        <a href="#!add_pet">
+		<button class="btn btn-primary" ng-click="passType($index)" type="button">Add a {{animal.type}}</button>
+		</a>
+		</td>
+      </tr>
+    </tbody>
+</table>
+
+<div class="row padding-top-45"></div>
+
+<!-- Table specific: list of animals by type -->
+<div ng-if="animal_type!=undefined && get_nanimals(animal_type)">
+	<h3>There are {{get_nanimals(animal_type)}} animals type {{animal_type}} in the pet shop</h3>
+	<table class="table table-striped">
+	<thead>
+      <tr>
+        <th>Name</th>
+        <th>Age (years)</th>
+        <th></th>
+      </tr>
+	</thead>
+    <tbody>
+      <tr class="text-left" ng-repeat="animal in animal_specifc_infos track by $index">
+        <td>{{animal.name}}</td>
+        <td>{{animal.age}}</td>
+        <td class="text-right">
+		<button type="button" class="btn btn-danger" ng-click="remove_pet($index)">Remove {{animal.name}}</button>
+		</td>
+      </tr>
+    </tbody>
+	</table>
+</div>
+<div ng-if="animal_type!=undefined && !get_nanimals(animal_type)"><h3>There are no animals type {{animal_type}} in the pet shop</h3></div>

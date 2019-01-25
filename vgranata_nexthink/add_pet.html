@@ -1,0 +1,25 @@
+<div class="col-xs-12 col-sm-12">
+<h3>Add a {{animal_type}}</h3>
+</div>
+<form name="addPet" novalidate>
+<div class="row padding-top-45">
+	<label for="name">Name*: </label>
+	<input ng-model="new_pet.pet_name" type="text" maxlength="30" name="name" placeholder="Name of pet" required>
+</div>
+<div class="row padding-top-15">	
+	<label for="age">Age*: </label>
+	<input ng-model="new_pet.pet_age" type="number" min="0" step="1" max="99" name="age" placeholder="Age of pet" required>
+</div>	
+
+<div class="row padding-top-15">
+	<a href="#!">
+	<button class="btn btn-secondary" type="button">Back to shop</button>
+	</a>
+	<a href="#!">
+	<button ng-disabled="addPet.name.$invalid || addPet.age.$invalid"
+  	class="btn btn-primary" type="submit" ng-click="add_pet()">Add</button>
+	</a>
+</div>
+</form>
+<div class="row padding-top-15"></div>
+* compulsory field
